@@ -5,22 +5,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BackendService {
-  public URL:string = "http://localhost:3000" //Cambiar según sea necesario
+  private URL:string = "http://localhost:3000" //Cambiar según sea necesario
   constructor(private httpClient:HttpClient) {}
   async consulta(url:string){
     let ruta:string = this.URL + "/consulta" + url;
-    return this.httpClient.get(url)
+    return this.httpClient.get(ruta)
   }
   async actualizacion(url:string, body:any){
     let ruta:string = this.URL + "/cambio" + url;
-    return this.httpClient.put(url, body);
+    return this.httpClient.put(ruta, body).toPromise();
   }
   async alta(url:string, body:any){
     let ruta:string = this.URL + "/alta" + url;
-    return this.httpClient.post(url, body);
+    return this.httpClient.post(ruta, body).toPromise();
   }
   async eliminar(url:string, body:any){
     let ruta:string = this.URL + "/baja" + url;
-    return this.httpClient.delete(url, body);
+    return this.httpClient.delete(ruta, body).toPromise();
   }
 }

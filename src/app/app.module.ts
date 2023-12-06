@@ -16,6 +16,10 @@ import { RegistroVendedorComponent } from './registro-vendedor/registro-vendedor
 import { MenuCompradorComponent } from './menu-comprador/menu-comprador.component';
 import { SeleccionUsuarioComponent } from './seleccion-usuario/seleccion-usuario.component';
 import { RegistroProductoComponent } from './registro-producto/registro-producto.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BackendService } from './services/backend.service';
+import { MapaComponent } from './mapa/mapa.component';
+import { MenuVendedorComponent } from './menu-vendedor/menu-vendedor.component';
 
 const appRoutes:Routes=[
   {path:'', component:LoginComponent},
@@ -39,17 +43,20 @@ const appRoutes:Routes=[
     RegistroVendedorComponent,
     MenuCompradorComponent,
     SeleccionUsuarioComponent,
-    RegistroProductoComponent
+    RegistroProductoComponent,
+    MapaComponent,
+    MenuVendedorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

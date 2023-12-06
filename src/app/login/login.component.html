@@ -1,45 +1,50 @@
 <div class="container">
-    <div class="login__content">
-        <img src="assets/images/antojos.jpg" alt="login image" class="login__img">
+  <div class="login__content">
+    <img src="assets/images/antojos.jpg" alt="login image" class="login__img" />
 
-        <form action="" class="login__form">
-            <img src="assets/images/logo-uaantojos.png">
+    <form class="login__form" [formGroup]="formUser" (ngSubmit)="login()">
+      <img src="assets/images/logo-uaantojos.png" />
 
-            <div>
-                <div class="login__inputs">
-                    <div>
-                        <label for="input-email" class="login__label"><b>Usuario</b></label>
-                        <input type="email" placeholder="" required class="login__input" id="input-email">
-                    </div>
+      <div>
+        <div class="login__inputs">
+          <div>
+            <label for="input-email" class="login__label"><b>Correo</b></label>
+            <input
+              type="email"
+              placeholder=""
+              class="login__input"
+              id="correo"
+              formControlName="correo"
 
-                    <div>
-                        <label for="input-pass" class="login__label"><b>Contraseña</b></label>
+            />
+          </div>
 
-                        <div class="login__box">
-                            <input type="password" placeholder="" required class="login__input" id="input-pass">
-                            <i class="ri-eye-off-line login__eye" id="input-icon"></i>
-                        </div>
-                    </div>
+          <div>
+            <label for="input-pass" class="login__label"
+              ><b>Contraseña</b></label
+            >
 
-                    <div>
-                        <select class="login__select">
-                            <option selected>Selecciona...</option>
-                            <option value="1">Cliente</option>
-                            <option value="2">Usuario</option>
-                        </select>
-                    </div>
-                </div>
-
+            <div class="login__box">
+              <input
+                type="password"
+                placeholder=""
+                class="login__input"
+                id="input-pass"
+                formControlName="contrasena"
+              />
+              <i class="ri-eye-off-line login__eye" id="input-icon"></i>
             </div>
 
-            <div>
-                <div class="login__buttons">
-                    <button class="login__button">Ingresar</button>
-                    <button class="login__button">Registrarme</button>
-                </div>
+          </div>
+        </div>
+      </div>
 
-
-            </div>
-        </form>
-    </div>
+      <div>
+        <div class="login__buttons">
+          <button type="submit" class="login__button" [disabled]="formUser.invalid">Ingresar</button>
+          <button type="button" class="login__button" routerLink="/seleccion_usuario">Registrarme</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

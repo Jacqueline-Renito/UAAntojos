@@ -16,7 +16,7 @@
     --font-medium: 500;
     --font-semi-bold: 600;
   }
-  
+
   @media screen and (min-width: 1024px) {
     :root {
       --h2-font-size: 1.75rem;
@@ -25,7 +25,7 @@
       --smaller-font-size: .813rem;
     }
   }
-  
+
   select{
     width: 100%;
     padding: 14px 12px;
@@ -44,32 +44,32 @@
     font-size: 18px;
     font-weight: var(--font-semi-bold);
   }
-  
-  
+
+
   * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
   }
-  
+
   body {
     background-color: var(--body-color);
     font-family: var(--body-font);
     color: var(--text-color);
   }
-  
+
   input,
   button {
     font-family: var(--body-font);
     border: none;
     outline: none;
   }
-  
+
   img {
     max-width: 100%;
     height: auto;
   }
-  
+
   .login__content, .login__form, .login__inputs {
     display: grid;
   }
@@ -140,12 +140,12 @@
   .login__box .login__input {
     padding-right: 36px;
   }
-  
+
   .login__buttons {
     display: flex;
     column-gap: 0.75rem;
   }
-  
+
   .login__button {
     width: 100%;
     padding: 14px 2rem;
@@ -159,18 +159,23 @@
     margin-bottom: 1rem;
     cursor: pointer;
   }
-  
+
+  .login__button:disabled{
+    background-color: gray;
+    cursor: auto;
+  }
+
   button:hover{
     background-color: aqua;
   }
-  
+
   .login__button-ghost {
     background: hsla(244, 16%, 92%, 0.6);
     border: 2px solid var(--first-color);
     color: var(--first-color);
     box-shadow: none;
   }
-  
+
   /* For small devices */
   @media screen and (max-width: 360px) {
     .login__buttons {

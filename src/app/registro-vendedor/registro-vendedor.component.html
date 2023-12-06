@@ -4,41 +4,54 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Registro Vendedor</h5>
-                    <form>
+                    <form [formGroup]="formUser" (ngSubmit)="registrar()">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre Comercial</label>
-                            <input type="text" class="form-control" id="nombre"
+                            <input type="text" class="form-control" id="nombre" formControlName="nombreComercial"
                                 placeholder="Ingresa el nombre comercial de tu empredimiento">
                         </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre(s)">
+                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre(s)" formControlName="nombre">
                         </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Primer Apellido</label>
                             <input type="text" class="form-control" id="nombre"
-                                placeholder="Ingresa tu primer apellido">
+                                placeholder="Ingresa tu primer apellido"
+                                formControlName="primape">
                         </div>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Segundo Apellido</label>
                             <input type="text" class="form-control" id="nombre"
-                                placeholder="Ingresa tu segundo apellido">
+                                placeholder="Ingresa tu segundo apellido"
+                                formControlName="segape">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
+                            <input type="email" class="form-control" id="email"
+                            placeholder="nombre@ejemplo.com"
+                            formControlName="correo">
                         </div>
                         <div class="mb-3">
                             <label for="contraseña" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="contraseña"
-                                placeholder="Ingresa tu contraseña">
+                                placeholder="Ingresa tu contraseña"
+                                formControlName="contrasena">
                         </div>
                         <div class="mb-3">
-                            <label for="confirmar-contraseña" class="form-label">Ubicación</label>
-                            <input type="password" class="form-control" id="confirmar-contraseña"
-                                placeholder="Ingrese su ubicación">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                            <label for="confirmar-contraseña" class="form-label"
+                              >Confirmar contraseña</label
+                            >
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="confirmar-contraseña"
+                              placeholder="Confirma tu contraseña"
+                              formControlName="confirmar"
+                            />
+                          </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid">Registrarse</button>
+                        <button type="button" class="btn btn-secondary" routerLink="/seleccion_usuario">Regresar</button>
                     </form>
                 </div>
             </div>
