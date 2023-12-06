@@ -1,0 +1,91 @@
+<div id="pantallaDividida">
+    <div class="total-productos">
+        <h2><i class="fa-solid fa-cart-shopping"></i> Carrito de compras</h2>
+        <div class="table-products">
+            <table id="table-prod" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="brownies.jpg" alt="" class="img-product">
+                        </td>
+                        <td>
+                            Kendall grandote
+                        </td>
+                        <td>
+                            <div class="button-container">
+                                <button class="cart-qty-plus" type="button" value="+">+</button>
+                                <input type="text" name="qty" min="0" class="qty form-control" value="0" />
+                                <button class="cart-qty-minus" type="button" value="+">-</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" id="precio" value="72" class="price form-control" disabled />
+                        </td>
+                        <td align="right">
+                            $
+                            <span id="amount" class="amount">0</span>
+                        </td>
+                        <td align="right">
+                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="brownies.jpg" alt="" class="img-product">
+                        </td>
+                        <td>
+                            Kendall grandote
+                        </td>
+                        <td>
+                            <div class="button-container">
+                                <button class="cart-qty-plus" type="button" value="+">+</button>
+                                <input type="text" name="qty" min="0" class="qty form-control" value="0" />
+                                <button class="cart-qty-minus" type="button" value="+">-</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" value="72" class="price form-control" disabled />
+                        </td>
+                        <td align="right">
+                            $
+                            <span id="amount" class="amount">0</span>
+                        </td>
+                        <td align="right">
+                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="button-izq">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-arrow-left"></i> Continuar
+                comprando</button>
+
+        </div>
+    </div>
+
+    <div class="resumen-compra">
+        <div class="card text-center mb-3" style="width: 18rem; padding: 10px;">
+            <div class="card-body">
+                <h2>Resumen de compra</h2>
+                <hr>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+                <hr>
+                <h3 style="text-align: left;">Total:</h3>
+                <a href="#" class="btn btn-primary">Pagar</a>
+            </div>
+        </div>
+    </div>
+</div>
