@@ -13,6 +13,7 @@ import { RegistroClienteComponent } from './registro-cliente/registro-cliente.co
 import { RegistroVendedorComponent } from './registro-vendedor/registro-vendedor.component';
 import { MenuCompradorComponent } from './menu-comprador/menu-comprador.component';
 import { SeleccionUsuarioComponent } from './seleccion-usuario/seleccion-usuario.component';
+import { RegistroProductoComponent } from './registro-producto/registro-producto.component';
 
 const appRoutes:Routes=[
   {path:'', component:LoginComponent},
@@ -22,6 +23,7 @@ const appRoutes:Routes=[
   {path:'registrarcliente', component:RegistroClienteComponent},
   {path:'registrarvendedor', component:RegistroVendedorComponent},
   {path:'seleccionusuario', component:SeleccionUsuarioComponent},
+  {path:'registrarproducto', component:RegistroProductoComponent}
 ]
 
 @NgModule({
@@ -34,7 +36,8 @@ const appRoutes:Routes=[
     RegistroClienteComponent,
     RegistroVendedorComponent,
     MenuCompradorComponent,
-    SeleccionUsuarioComponent
+    SeleccionUsuarioComponent,
+    RegistroProductoComponent
   ],
   imports: [
     BrowserModule,
