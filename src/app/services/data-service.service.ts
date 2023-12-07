@@ -14,7 +14,7 @@ export class DataServiceService {
     const jsonData = sessionStorage.getItem(obtener);
     return jsonData ? JSON.parse(jsonData) : null;
   }
-  clearData(): void {
-    sessionStorage.removeItem('myData');
+  clearData(remove: string): void {
+    sessionStorage.removeItem(remove);
   }
 }

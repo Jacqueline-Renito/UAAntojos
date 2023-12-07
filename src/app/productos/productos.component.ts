@@ -56,10 +56,6 @@ export class ProductosComponent implements OnInit {
       title: 'Se ha agregado correctamente al carrito'
     })
   }
-  getImages(idProd:number){
-    let img:string = "";
-    return img;
-  }
 }
 
 interface prod {
@@ -76,4 +72,5 @@ interface productos {
   idVendedor: number,
   baja: boolean,
   vendedor: string
+  imagen: string
 }

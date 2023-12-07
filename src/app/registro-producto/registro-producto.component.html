@@ -4,32 +4,26 @@
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Registro del Producto</h5>
-                  <form>
+                  <form [formGroup]="formGroup">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del producto">
+                        <label for="nombre" class="form-label" >Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre del producto">
                       </div>
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Cantidad</label>
-                      <input type="text" class="form-control" id="nombre" placeholder="Ingresa la cantidad de productos a vender">
+                      <input type="text" class="form-control" id="nombre" formControlName="cantidad" placeholder="Ingresa la cantidad de productos a vender">
                     </div>
                     <label for="nombre" class="form-label">Precio</label>
                     <div class="input-group mb-3">
                       <span class="input-group-text">$</span>
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" formControlName="precio">
                       <span class="input-group-text">.00</span>
                     </div>
                     <div class="mb-3">
                       <label for="exampleFormControlTextarea1" class="form-label">Descripción del producto</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descripcion"></textarea>
                     </div>
-                    <div class="mb-3">
-                      <label for="nombre" class="form-label">Foto de producto</label>
-                      <div class="mb-3">
-                        <input class="form-control" type="file" id="formFile">
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="submit" class="btn btn-primary" (click)="getPhoto()" [disabled]="formGroup.invalid">Registrar</button>
                   </form>
                 </div>
               </div>

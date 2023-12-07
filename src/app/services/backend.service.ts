@@ -45,5 +45,6 @@ export interface producto{
   descripcion: string,
   idVendedor:number,
   baja:Boolean,
-  vendedor:string
+  vendedor:string,
+  imagen:string
 }

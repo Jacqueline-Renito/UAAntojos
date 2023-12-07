@@ -11,6 +11,11 @@ import { MapaComponent } from './mapa/mapa.component';
 import { ProductosComponent } from './productos/productos.component';
 import { VendedorComponent } from './vendedor/vendedor.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
+import { ComprasComponent } from './compras/compras.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+import { EditarProductoComponent } from './editar-producto/editar-producto.component';
+import { PrincipalComponent } from './principal/principal.component';
+import { RegistroProductoComponent } from './registro-producto/registro-producto.component';
 
 const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
@@ -19,13 +24,17 @@ const routes: Routes = [
   { path: 'inicio', component: MenuCompradorComponent },
   { path: 'registro_cliente', component: RegistroClienteComponent },
   { path: 'registro_vendedor', component: RegistroVendedorComponent },
+  { path: 'registro_producto', component: RegistroProductoComponent },
   { path: 'seleccion_usuario', component: SeleccionUsuarioComponent },
   { path: 'menu_comprador', component: MenuCompradorComponent },
   { path: 'menu_vendedor', component: MenuVendedorComponent },
   { path: 'mapa', component: MapaComponent},
   { path: 'vendedor/:id', component: VendedorComponent},
-  { path: 'vendedores', component: VendedoresComponent}
-
+  { path: 'vendedores', component: VendedoresComponent},
+  { path: 'compras', component: ComprasComponent },
+  { path: 'editar_cliente', component: EditarClienteComponent },
+  { path: 'editar_producto', component: EditarProductoComponent },
+  { path: '', component: PrincipalComponent },
 ];
 
 @NgModule({
