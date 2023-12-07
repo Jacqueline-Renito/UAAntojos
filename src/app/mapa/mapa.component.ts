@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import Swal from 'sweetalert2';
 import { BackendService, vendedor } from '../services/backend.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-mapa',
@@ -10,13 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./mapa.component.css']
 })
 
-export class MapaComponent implements OnInit{
+export class MapaComponent implements OnInit, OnDestroy{
   ubicacion!:GeolocationCoordinates;
   mapa!:any;
   vendedores:vendedor[] = [];
+  updateMapa!:any;
+  updateUsuario!:any;
 
   constructor(private backendService:BackendService, private router:Router){
     this.ngOnInit();
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.updateUsuario);
+    clearInterval(this.updateMapa);
   }
 
   private icon = L.icon({
@@ -27,8 +34,8 @@ export class MapaComponent implements OnInit{
     this.getVendedores();
     this.getUsuario();
     this.crearMapa();
-    setInterval(this.getUsuario, 10000 /**Cada 10 segudndos actualza */)
-    setInterval(this.getVendedores, 10000 /**Cada 10 segudndos actualza */)
+    this.updateUsuario = setInterval(this.getUsuario, 10000 /**Cada 10 segudndos actualza */)
+    this.updateMapa = setInterval(this.getVendedores, 10000 /**Cada 10 segudndos actualza */)
   }
 
   async getUsuario(){

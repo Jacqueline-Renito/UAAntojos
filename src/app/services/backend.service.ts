@@ -23,6 +23,7 @@ export class BackendService {
     let ruta:string = this.URL + "/baja" + url;
     return this.httpClient.delete(ruta, body).toPromise();
   }
+
 }
 
 export interface vendedor{
@@ -38,7 +39,7 @@ export interface vendedor{
   direccion: {
     edificio: string,
     campus: string,
-    salón: string
+    salon: string
   }
 }
 
@@ -52,4 +53,10 @@ export interface producto{
   baja:Boolean,
   vendedor:string,
   imagen:string
+}
+export interface res{
+  success: boolean;
+  id: string;
+  err: string;
+  code: string;
 }

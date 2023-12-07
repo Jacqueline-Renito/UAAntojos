@@ -23,7 +23,7 @@ export class VendedorComponent implements OnInit{
     direccion: {
       edificio: '',
       campus: '',
-      salón: ''
+      salon: ''
     }
   };
   productos: producto[] = [];

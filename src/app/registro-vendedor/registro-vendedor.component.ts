@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { BackendService } from '../services/backend.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-registro-vendedor',
   templateUrl: './registro-vendedor.component.html',
@@ -17,6 +17,9 @@ export class RegistroVendedorComponent {
     'primape': new FormControl('',[Validators.required]),
     'segape': new FormControl('',[Validators.required]),
     'correo': new FormControl('',[Validators.required, Validators.email]),
+    'edificio': new FormControl('',[Validators.required]),
+    'campus': new FormControl('',[Validators.required]),
+    'salon': new FormControl('',[Validators.required]),
     'contrasena': new FormControl('',[Validators.required]),
     'confirmar': new FormControl('',[Validators.required]),
   }, {
@@ -31,8 +34,10 @@ export class RegistroVendedorComponent {
         nombre: this.formUser.controls['nombre'].value,
         primape: this.formUser.controls['primape'].value,
         segape: this.formUser.controls['segape'].value,
-        ubicacion: this.formUser.controls['ubicacion'].value,
-        nombreComercial: this.formUser.controls['nombreComercial'].value
+        nombreComercial: this.formUser.controls['nombreComercial'].value,
+        edificio: this.formUser.controls['edificio'].value,
+        campus: this.formUser.controls['campus'].value,
+        salon: this.formUser.controls['salon'].value,
       }
       this.backService.alta("/vendedor", body).then((data:any) =>{
         if(data.success){
