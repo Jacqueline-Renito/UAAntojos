@@ -24,3 +24,26 @@ export class BackendService {
     return this.httpClient.delete(ruta, body).toPromise();
   }
 }
+
+export interface vendedor{
+  id:number,
+  nombreComercial: string,
+  corre: string,
+  nombre: string,
+  ubicacion: {
+    longitud:number,
+    latitud:number
+  },
+  activo: Boolean
+}
+
+export interface producto{
+  id:number,
+  nombre: string,
+  cantidad: number,
+  precio: number,
+  descripcion: string,
+  idVendedor:number,
+  baja:Boolean,
+  vendedor:string
+}

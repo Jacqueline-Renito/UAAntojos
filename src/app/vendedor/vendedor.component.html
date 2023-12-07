@@ -1,0 +1,65 @@
+<div style="padding: 10px;">
+  <h1 class="text-center" style="font-size: xx-large;">{{vendedor.nombreComercial}}</h1>
+  <div class="table-responsive" >
+    <div>
+        <table id="table-prod" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Existencias</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Producto</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let prod of productos">
+                <td>
+                  <img src="brownies.jpg" alt="" class="img-product">
+                </td>
+                <td>
+                    {{ prod.nombre }}
+                </td>
+                <td>
+                  {{ prod.cantidad }}
+                </td>
+                <td>
+                    <div class="button-container">
+                      <button class="cart-qty-minus" type="button" value="-">-</button>
+                      <input type="number" name="qty" [max]="prod.cantidad" min="1" class="qty form-control" value="1" />
+                      <button class="cart-qty-plus" type="button" value="+">+</button>
+                    </div>
+                </td>
+                <td>
+                    <input type="text" id="precio" [value]="'$'+prod.precio" class="price form-control" disabled />
+                </td>
+                <td>
+                    $
+                    <span id="amount" class="amount">0</span>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div *ngFor="let p of productos" class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card" style="width: 18rem;">
+                    <img (src)="getImages(p.id)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">{{p.nombre}}</h5>
+                    <p class="card-text">{{p.descripcion}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">cantidad disponible: {{p.cantidad}}</li>
+                    <li class="list-group-item">precio: ${{p.precio}}</li>
+                    <li class="list-group-item">Vendido por: {{p.vendedor}}</li>
+                    </ul>
+                    <div class="card-body" style="width: 100%;">
+                        <button (click)="agregarCarrito(p.id)" class="btn btn-outline-primary justify-content-center" style="width: 100%;"><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

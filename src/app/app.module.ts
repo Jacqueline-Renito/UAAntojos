@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { CarritoComponent } from './carrito/carrito.component';
-import { DetalleProductoComponent } from './detalle-producto/detalle-producto.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
 import { RegistroVendedorComponent } from './registro-vendedor/registro-vendedor.component';
@@ -19,42 +19,47 @@ import { RegistroProductoComponent } from './registro-producto/registro-producto
 import { ReactiveFormsModule } from '@angular/forms';
 import { BackendService } from './services/backend.service';
 import { MapaComponent } from './mapa/mapa.component';
+import { VendedorComponent } from './vendedor/vendedor.component';
 import { MenuVendedorComponent } from './menu-vendedor/menu-vendedor.component';
-
-const appRoutes:Routes=[
-  {path:'', component:LoginComponent},
-  {path:'carrito', component:CarritoComponent},
-  {path:'detalleproducto', component:DetalleProductoComponent},
-  {path:'menucomprador', component:MenuCompradorComponent},
-  {path:'registrarcliente', component:RegistroClienteComponent},
-  {path:'registrarvendedor', component:RegistroVendedorComponent},
-  {path:'seleccionusuario', component:SeleccionUsuarioComponent},
-  {path:'registrarproducto', component:RegistroProductoComponent}
-]
+import { ProductosComponent } from './productos/productos.component';
+import { VendedoresComponent } from './vendedores/vendedores.component';
+import { VentasComponent } from './ventas/ventas.component';
+import { ComprasComponent } from './compras/compras.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+import { EditarProductoComponent } from './editar-producto/editar-producto.component';
+import { PrincipalComponent } from './principal/principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CarritoComponent,
-    DetalleProductoComponent,
     LoginComponent,
     RegistroClienteComponent,
     RegistroVendedorComponent,
+    VendedorComponent,
     MenuCompradorComponent,
     SeleccionUsuarioComponent,
     RegistroProductoComponent,
     MapaComponent,
-    MenuVendedorComponent
+    MenuVendedorComponent,
+    ProductosComponent,
+    VendedoresComponent,
+    VentasComponent,
+    ComprasComponent,
+    EditarClienteComponent,
+    EditarProductoComponent,
+    PrincipalComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    BrowserAnimationsModule
+
   ],
   providers: [BackendService],
   bootstrap: [AppComponent]
