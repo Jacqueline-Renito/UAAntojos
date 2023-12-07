@@ -71,6 +71,7 @@ export class CarritoComponent implements OnInit {
     this.productos.forEach(async (prod)=>{
       let consulta = await this.backService.consulta('/producto/'+prod.id);
       consulta.forEach((data:any) => {
+        console.log(data)
         let detprod = <producto>data.producto;
         detprod.cantidadAgregada = prod.cantidad;
         detprod.subtotal = detprod.cantidadAgregada * detprod.precio;
@@ -78,7 +79,6 @@ export class CarritoComponent implements OnInit {
         this.calcTotal()
       })
     })
-
   }
 
   apartar(){
@@ -121,5 +121,6 @@ interface producto {
   baja: boolean,
   vendedor: string,
   cantidadAgregada: number,
-  subtotal: number
+  subtotal: number,
+  imagen: string
 }

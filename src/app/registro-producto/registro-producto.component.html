@@ -6,9 +6,8 @@
                   <h5 class="card-title">Registro del Producto</h5>
                   <form [formGroup]="formGroup">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label" >Nombre</label>
-                        <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre del producto">
-                      </div>
+                      <p-dropdown inputId="nombre" styleClass="w-100" [options]="listProd" formControlName="nombre" optionLabel="nombre"></p-dropdown>
+                          </div>
                     <div class="mb-3">
                       <label for="nombre" class="form-label">Cantidad</label>
                       <input type="text" class="form-control" id="nombre" formControlName="cantidad" placeholder="Ingresa la cantidad de productos a vender">
@@ -29,4 +28,9 @@
               </div>
         </div>
     </div>
+  </div>
+  <div class="button-izq">
+    <button class="btn btn-primary p-3" type="submit" routerLink="/menu_vendedor">
+      <i class="fa-solid fa-arrow-left"></i> Regresar
+    </button>
   </div>

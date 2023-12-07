@@ -13,13 +13,18 @@ export class VendedorComponent implements OnInit{
   vendedor: vendedor = {
     id: 0,
     nombreComercial: '',
-    corre: '',
+    correo: '',
     nombre: '',
     ubicacion: {
       longitud: 0,
       latitud: 0
     },
-    activo: false
+    activo: false,
+    direccion: {
+      edificio: '',
+      campus: '',
+      salón: ''
+    }
   };
   productos: producto[] = [];
   constructor(private activatedroute:ActivatedRoute, private backEndService:BackendService,private dataService:DataServiceService){

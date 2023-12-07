@@ -28,13 +28,18 @@ export class BackendService {
 export interface vendedor{
   id:number,
   nombreComercial: string,
-  corre: string,
+  correo: string,
   nombre: string,
   ubicacion: {
     longitud:number,
     latitud:number
   },
-  activo: Boolean
+  activo: Boolean,
+  direccion: {
+    edificio: string,
+    campus: string,
+    salón: string
+  }
 }
 
 export interface producto{

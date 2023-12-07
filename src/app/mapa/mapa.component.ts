@@ -25,13 +25,20 @@ export class MapaComponent implements OnInit{
 
   async ngOnInit() {
     this.getVendedores();
+    this.getUsuario();
+    this.crearMapa();
+    setInterval(this.getUsuario, 10000 /**Cada 10 segudndos actualza */)
+    setInterval(this.getVendedores, 10000 /**Cada 10 segudndos actualza */)
+  }
+
+  async getUsuario(){
+    console.log("Hola")
     navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
       this.ubicacion = position.coords;
       this.setUsuario()
     }, (error) => {
       Swal.fire('Ubicación', 'No se ha podido obtener la ubicación', 'error')
     }, {enableHighAccuracy: true, maximumAge: 0});
-    this.crearMapa()
   }
 
   async getVendedores(){
@@ -58,7 +65,6 @@ export class MapaComponent implements OnInit{
   }
 
   setUsuario(){
-    console.log(this.ubicacion)
     let usuarioMarker = L.marker([this.ubicacion.latitude, this.ubicacion.longitude],{
       icon: this.icon
     });
@@ -71,7 +77,6 @@ export class MapaComponent implements OnInit{
     let markers:L.Marker[] = []
     this.vendedores.forEach((vendedor) => {
       if(vendedor.activo && vendedor.ubicacion.latitud != 1000 && vendedor.ubicacion.longitud != 1000){
-        console.log(vendedor);
         let marker = L.marker([vendedor.ubicacion.latitud, vendedor.ubicacion.longitud], {
           icon: this.icon
         })

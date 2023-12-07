@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
 })
 export class ProductosComponent implements OnInit {
   prods:productos[]=[];
-
+  mostrarProductos: productos [] = [];
+  busqueda:string = "";
+  termino!:HTMLInputElement;
   constructor(private dataService:DataServiceService,private backService:BackendService){}
 
   async ngOnInit(): Promise<void> {
@@ -21,6 +23,7 @@ export class ProductosComponent implements OnInit {
       data.forEach((productos:any)=>{
         this.prods = <productos[]>productos.productos
         console.log(this.prods)
+        this.initBusqueda()
       })
     }
     else{
@@ -28,6 +31,26 @@ export class ProductosComponent implements OnInit {
       console.log(data)
     }
   }
+
+  async initBusqueda(){
+    this.mostrarProductos = this.prods;
+    this.termino = <HTMLInputElement> document.getElementById("termino")!;
+    this.termino.addEventListener("keyup",() => {
+      this.mostrarProductos = [];
+      if(this.termino!=undefined && this.termino.value!=""){
+        this.busqueda = this.termino.value;
+        this.prods.forEach((na:productos)=>{
+          if(na.nombre.toString().includes(this.busqueda)){
+            this.mostrarProductos.push(na);
+          }
+        });
+      }else{
+        this.busqueda = "";
+        this.mostrarProductos = this.prods;
+      }
+    });
+  }
+
   agregarCarrito(idProd:number){
     let aux:prod = {id:idProd,cantidad:1};
     console.log(aux)

@@ -19,9 +19,10 @@
             <tr *ngFor="let p of detProd">
               <td class="text-center">
                 <img
-                  src=""
+                  src="{{p.imagen}}"
                   alt=""
                   class="img-product"
+                  style="width: 100px; height: 100px; object-fit: cover;"
                 />
               </td>
               <td class="text-center">{{ p.nombre }}</td>

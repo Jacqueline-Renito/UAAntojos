@@ -28,7 +28,7 @@ import { ComprasComponent } from './compras/compras.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { EditarProductoComponent } from './editar-producto/editar-producto.component';
 import { PrincipalComponent } from './principal/principal.component';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,7 @@ import { PrincipalComponent } from './principal/principal.component';
     ComprasComponent,
     EditarClienteComponent,
     EditarProductoComponent,
-    PrincipalComponent,
+    PrincipalComponent
   ],
   imports: [
     CommonModule,
@@ -58,10 +58,12 @@ import { PrincipalComponent } from './principal/principal.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DropdownModule
 
   ],
   providers: [BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
