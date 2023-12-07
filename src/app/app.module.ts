@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { RouterModule, Routes } from '@angular/router';
 import { CarritoComponent } from './carrito/carrito.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroClienteComponent } from './registro-cliente/registro-cliente.component';
@@ -23,15 +22,18 @@ import { VendedorComponent } from './vendedor/vendedor.component';
 import { MenuVendedorComponent } from './menu-vendedor/menu-vendedor.component';
 import { ProductosComponent } from './productos/productos.component';
 import { VendedoresComponent } from './vendedores/vendedores.component';
-import { VentasComponent } from './ventas/ventas.component';
 import { ComprasComponent } from './compras/compras.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { EditarProductoComponent } from './editar-producto/editar-producto.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { DataServiceService } from './services/data-service.service';
+import { UnplashService } from './services/unplash.service';
+import { VentasComponent } from './ventas/ventas.component';
 @NgModule({
   declarations: [
     AppComponent,
+    VentasComponent,
     NavbarComponent,
     CarritoComponent,
     LoginComponent,
@@ -45,11 +47,10 @@ import { DropdownModule } from 'primeng/dropdown';
     MenuVendedorComponent,
     ProductosComponent,
     VendedoresComponent,
-    VentasComponent,
     ComprasComponent,
     EditarClienteComponent,
     EditarProductoComponent,
-    PrincipalComponent
+    PrincipalComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +63,7 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule
 
   ],
-  providers: [BackendService],
+  providers: [BackendService,DataServiceService,UnplashService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

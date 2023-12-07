@@ -5,3 +5,9 @@
 table{
     border: #b2b2b2 1px solid;
 }
+.button-izq{
+  position: fixed;
+  bottom: 60px;
+  right: 10px;
+  z-index: 10000000000000000;
+}

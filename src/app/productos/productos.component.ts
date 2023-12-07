@@ -22,13 +22,10 @@ export class ProductosComponent implements OnInit {
     if(data){
       data.forEach((productos:any)=>{
         this.prods = <productos[]>productos.productos
-        console.log(this.prods)
         this.initBusqueda()
       })
     }
     else{
-      console.log('algo falla')
-      console.log(data)
     }
   }
 
@@ -53,7 +50,6 @@ export class ProductosComponent implements OnInit {
 
   agregarCarrito(idProd:number){
     let aux:prod = {id:idProd,cantidad:1};
-    console.log(aux)
     let carrito = <prod[]>this.dataService.getData('carrito');
     if(carrito == null) carrito = [];
     if(carrito.find((prod)=>prod.id === idProd)){

@@ -18,7 +18,6 @@ export class VendedoresComponent implements OnInit{
 
   async initBusqueda(){
     this.mostrarVendedores = this.vendedores;
-    console.log(this.mostrarVendedores)
     this.termino = <HTMLInputElement> document.getElementById("termino")!;
     this.termino.addEventListener("keyup",() => {
       this.mostrarVendedores = [];

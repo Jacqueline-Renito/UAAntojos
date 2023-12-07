@@ -12,43 +12,46 @@ import { DropdownChangeEvent } from 'primeng/dropdown';
   styleUrls: ['./registro-producto.component.css']
 })
 export class RegistroProductoComponent implements OnInit{
-  listProd:productos[]=[]
+  usuario!:any;
+  listProd:productos[]=[];
   btnReg!: HTMLButtonElement;
   optionProd!:productos|null;
   formGroup = new FormGroup({
     'productos': new FormControl<productos | null>(null, Validators.required),
     'nombre': new FormControl('',[Validators.required]),
-    'cantidad': new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
-    'precio': new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    'cantidad': new FormControl<number | null>(null, [Validators.required, Validators.pattern('^[0-9]*$')]),
+    'precio': new FormControl<number | null>(null, [Validators.required, Validators.pattern('^[0-9]*(.[0-9]{2})?$')]),
     'descripcion': new FormControl('',[Validators.required]),
   })
   imagenRecibida!:string;
  constructor( private router:Router, private unplash:UnplashService, private dataService: DataServiceService, private backService:BackendService){}
 
   async ngOnInit(): Promise<void> {
+    this.usuario = this.dataService.getData('usuario');
     await this.getProductos();
     this.btnReg = <HTMLButtonElement>document.getElementById("btnReg")!;
   }
 
  async getPhoto(){
-  let url:string = this.formGroup.controls.nombre.value!;
-  let data = await this.unplash.getPhoto(url);
-  data.forEach((imagen:any) => {
-    console.log(imagen)
-    this.imagenRecibida = imagen.results[0].urls.small
-    this.regProd()
-    //Llamar a cualquier otra funcion para hacer el alta
-  })
+  if(this.optionProd == null){
+    let url:string = this.formGroup.controls.nombre.value!;
+    let data = await this.unplash.getPhoto(url);
+    data.forEach((imagen:any) => {
+      if(imagen.total > 0)this.imagenRecibida = imagen.results[0].urls.small;
+      this.regProd()
+      //Llamar a cualquier otra funcion para hacer el alta
+    })
+  }else{
+    this.regProd();
+  }
+
  }
- changeListenerProd(evento:DropdownChangeEvent) {
-  if (evento.value != null && evento.value.id != "0") {
-    let body = {
-      id: evento.value.nombre
-    }
-    this.backService.alta("/consulta/consProd", body)
-      .then((datosProd:any) => {
-        if(datosProd!=undefined){
-          this.optionProd = <productos>datosProd
+ async changeListenerProd(evento:DropdownChangeEvent) {
+  if (evento.value != null && evento.value.id != 0) {
+    (await this.backService.consulta("/producto/"+evento.value.id))
+    .forEach((datosProd:any) => {
+        if(datosProd.success){
+          this.optionProd = <productos>datosProd.producto
           this.loadProducto(this.optionProd)
         }
       });
@@ -58,21 +61,19 @@ export class RegistroProductoComponent implements OnInit{
   }
 }
  regProd(){
-  let usuario = this.dataService.getData('usuario')
   let body = {
-    productos: this.formGroup.controls.productos.value,
+    id: this.optionProd?.id,
     cantidad: this.formGroup.controls.cantidad.value,
     descripcion: this.formGroup.controls.descripcion.value,
     precio: this.formGroup.controls.precio.value,
     urlImagen: this.imagenRecibida,
-    idVendedor: usuario.id
+    idVendedor: this.usuario.id,
+    nombre: this.formGroup.controls.nombre.value
   }
   if(this.optionProd == null){
     this.backService.alta('/producto',body).then((data:any)=>{
         if(data.success){
-          Swal.fire('Registrar','Se ha registrado correctamente el producto','success').then(()=>{
-            this.router.navigateByUrl('/menu_vendedor');
-          })
+          Swal.fire('Registrar','Se ha registrado correctamente el producto','success');
         }
         else{
           Swal.fire('Registrar',data.message,'error');
@@ -80,7 +81,7 @@ export class RegistroProductoComponent implements OnInit{
       });
   }
   else{
-    this.backService.actualizacion('producto', body).then((res:any)=>{
+    this.backService.actualizacion('/producto', body).then((res:any)=>{
       let respuesta = res;
       if(respuesta.success){
         Swal.fire(
@@ -93,7 +94,7 @@ export class RegistroProductoComponent implements OnInit{
       } else {
         Swal.fire(
           'Actualizar',
-          'Ha ocurrido un error al actualizar el producto, faltan datos',
+          respuesta.message,
           'error'
         );
       }
@@ -101,8 +102,12 @@ export class RegistroProductoComponent implements OnInit{
   }
  }
  async getProductos(){
-    (await this.backService.consulta('/productos')).forEach((productos)=>{
-      this.listProd = <productos[]>productos;
+    (await this.backService.consulta('/vendedor/'+this.usuario.id+'/productos')).forEach((productos:any)=>{
+      if(productos.success){
+        this.listProd = <productos[]>productos.productos;
+      }else{
+        this.listProd = []
+      }
       this.listProd.splice(0, 0, <productos>{
         id: 0,
         cantidad: 0,
@@ -115,8 +120,8 @@ export class RegistroProductoComponent implements OnInit{
  loadProducto(dataProd: productos){
   this.formGroup.controls.nombre.setValue(dataProd.nombre)
   this.formGroup.controls.descripcion.setValue(dataProd.descripcion)
-  this.formGroup.controls.precio.setValue(dataProd.precio.toString())
-  this.formGroup.controls.cantidad.setValue(dataProd.cantidad.toString())
+  this.formGroup.controls.precio.setValue(dataProd.precio)
+  this.formGroup.controls.cantidad.setValue(dataProd.cantidad)
   this.btnReg.innerHTML = '<i class="fa-solid fa-pencil"></i> Actualizar <i class="fa-solid fa-pencil"></i>';
 }
 limpiarFormulario() {
@@ -128,7 +133,7 @@ limpiarFormulario() {
   }else{
     this.formGroup.reset()
   }
-
+  this.getProductos()
   this.btnReg.disabled = true;
 }
 }

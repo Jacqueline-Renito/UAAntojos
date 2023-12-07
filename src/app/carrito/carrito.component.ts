@@ -71,7 +71,6 @@ export class CarritoComponent implements OnInit {
     this.productos.forEach(async (prod)=>{
       let consulta = await this.backService.consulta('/producto/'+prod.id);
       consulta.forEach((data:any) => {
-        console.log(data)
         let detprod = <producto>data.producto;
         detprod.cantidadAgregada = prod.cantidad;
         detprod.subtotal = detprod.cantidadAgregada * detprod.precio;
@@ -91,7 +90,6 @@ export class CarritoComponent implements OnInit {
       }
       this.backService.alta('/venta', body).then((res:any) => {
         if(res.success){
-          console.log(res)
           Swal.fire('Apartado','Se ha apartado correctamente los productos, puede ir a recogerlos','success').then(() => {
             this.productos = []
             this.dataService.saveData(this.productos, 'carrito')

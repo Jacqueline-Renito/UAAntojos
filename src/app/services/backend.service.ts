@@ -21,7 +21,9 @@ export class BackendService {
   }
   async eliminar(url:string, body:any){
     let ruta:string = this.URL + "/baja" + url;
-    return this.httpClient.delete(ruta, body).toPromise();
+    return this.httpClient.delete(ruta, {
+      body: body
+    }).toPromise();
   }
 
 }

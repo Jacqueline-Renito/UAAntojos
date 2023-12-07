@@ -39,7 +39,6 @@ export class MapaComponent implements OnInit, OnDestroy{
   }
 
   async getUsuario(){
-    console.log("Hola")
     navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
       this.ubicacion = position.coords;
       this.setUsuario()

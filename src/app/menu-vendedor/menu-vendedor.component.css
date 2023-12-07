@@ -21,3 +21,12 @@
     margin-top: 20px;
     text-align: center;
   }
+
+  button {
+    padding: 10px;
+    border: none;
+    background-color: none;
+    color: none;
+    background: none;
+    aspect-ratio: 16/9;
+  }
