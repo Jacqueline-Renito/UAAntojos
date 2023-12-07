@@ -30,6 +30,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DataServiceService } from './services/data-service.service';
 import { UnplashService } from './services/unplash.service';
 import { VentasComponent } from './ventas/ventas.component';
+import { VendiendoComponent } from './vendiendo/vendiendo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { VentasComponent } from './ventas/ventas.component';
     EditarClienteComponent,
     EditarProductoComponent,
     PrincipalComponent,
+    VendiendoComponent,
   ],
   imports: [
     CommonModule,

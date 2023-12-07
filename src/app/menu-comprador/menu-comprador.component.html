@@ -23,7 +23,7 @@
                 </div>
             </button>
 
-            <button class="col">
+            <button class="col" routerLink="/pedidos">
                 <div class="card">
                     <img src="assets/images/compras.jpg" alt="Compras" class="image">
                     <div class="overlay">Apartados</div>
@@ -34,6 +34,6 @@
 </div>
 
 <div>
-    <a href="#" class="boton-circular-izq"><i class="fa-solid fa-user"></i></a>
+    <a (click)="salir()" class="boton-circular-izq"><i class="fa-solid fa-right-from-bracket"></i></a>
     <a routerLink="/carrito" class="boton-circular-der"><i class="fa-solid fa-cart-shopping"></i></a>
 </div>

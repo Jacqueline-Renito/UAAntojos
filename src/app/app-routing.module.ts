@@ -17,6 +17,7 @@ import { EditarProductoComponent } from './editar-producto/editar-producto.compo
 import { PrincipalComponent } from './principal/principal.component';
 import { RegistroProductoComponent } from './registro-producto/registro-producto.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { VendiendoComponent } from './vendiendo/vendiendo.component';
 
 const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'editar_cliente', component: EditarClienteComponent },
   { path: 'editar_producto', component: EditarProductoComponent },
   { path: 'pedidos', component: VentasComponent},
+  { path: 'vendiendo', component: VendiendoComponent },
   { path: '', component: PrincipalComponent },
 ];
 

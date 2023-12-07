@@ -16,16 +16,18 @@ export class VentasComponent implements OnInit{
     this.usuario = this.dataService.getData('usuario');
   }
 
+
+
+  ngOnInit() {
+    this.getVentas();
+  }
+
   regresar(){
     if(this.usuario.nombreComercial){
       this.router.navigateByUrl("/menu_vendedor");
     }else{
       this.router.navigateByUrl("/menu_comprador");
     }
-  }
-
-  ngOnInit() {
-    this.getVentas();
   }
 
   async getVentas(){
@@ -37,6 +39,12 @@ export class VentasComponent implements OnInit{
     }
     data.forEach((ventas:any) => {
       if(ventas.ventas) this.ventas = <venta[]> ventas.ventas;
+      this.ventas.forEach((v) => {
+        v.fechaFormato = new Date(v.fecha);
+      });
+      this.ventas.sort((a:venta, b:venta) => {
+        return (b.fechaFormato as Date).getTime() - (a.fechaFormato as Date).getTime();
+      });
       this.getDetalles()
     })
   }
@@ -70,6 +78,7 @@ interface venta{
   cliente: string,
   nombreComercial: string,
   fecha: string,
+  fechaFormato: Date,
   id: number,
   idCliente: number,
   idVendedor: number

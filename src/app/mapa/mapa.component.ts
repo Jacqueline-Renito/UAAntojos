@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 import Swal from 'sweetalert2';
 import { BackendService, vendedor } from '../services/backend.service';
 import { Router } from '@angular/router';
+import { DataServiceService } from '../services/data-service.service';
 
 
 @Component({
@@ -17,10 +18,13 @@ export class MapaComponent implements OnInit, OnDestroy{
   vendedores:vendedor[] = [];
   updateMapa!:any;
   updateUsuario!:any;
+  usuario:any;
 
-  constructor(private backendService:BackendService, private router:Router){
+  constructor(private backendService:BackendService, private router:Router, private dataService:DataServiceService){
+    this.usuario = this.dataService.getData('usuario');
     this.ngOnInit();
   }
+
   ngOnDestroy(): void {
     clearInterval(this.updateUsuario);
     clearInterval(this.updateMapa);
@@ -34,8 +38,12 @@ export class MapaComponent implements OnInit, OnDestroy{
     this.getVendedores();
     this.getUsuario();
     this.crearMapa();
-    this.updateUsuario = setInterval(this.getUsuario, 10000 /**Cada 10 segudndos actualza */)
-    this.updateMapa = setInterval(this.getVendedores, 10000 /**Cada 10 segudndos actualza */)
+    this.updateUsuario = setInterval(() => {
+      this.getUsuario()
+    }, 10000 /**Cada 10 segudndos actualza */)
+    this.updateMapa = setInterval(() => {
+      this.getVendedores()
+    }, 10000 /**Cada 10 segudndos actualza */)
   }
 
   async getUsuario(){

@@ -49,12 +49,10 @@ export class VendedorComponent implements OnInit{
     let data = await this.backEndService.consulta('/vendedor/'+this.id+'/productos');
     data.forEach((productos:any) => {
       this.productos = <producto[]>productos.productos;
+      console.log(this.productos)
     })
   }
-  getImages(idProd:number){
-    let img:string = "";
-    return img;
-  }
+
   agregarCarrito(idProd:number){
     let aux:prod = {id:idProd,cantidad:1};
     let carrito = <prod[]>this.dataService.getData('carrito');
