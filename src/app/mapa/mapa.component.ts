@@ -19,6 +19,8 @@ export class MapaComponent implements OnInit, OnDestroy{
   updateMapa!:any;
   updateUsuario!:any;
   usuario:any;
+  usuarioMarker!:L.Marker;
+  vendedoresMarker:L.Marker[] = [];
 
   constructor(private backendService:BackendService, private router:Router, private dataService:DataServiceService){
     this.usuario = this.dataService.getData('usuario');
@@ -79,19 +81,24 @@ export class MapaComponent implements OnInit, OnDestroy{
   }
 
   setUsuario(){
-    let usuarioMarker = L.marker([this.ubicacion.latitude, this.ubicacion.longitude],{
+    if(this.usuarioMarker)this.usuarioMarker.remove()
+    this.usuarioMarker = L.marker([this.ubicacion.latitude, this.ubicacion.longitude],{
       icon: this.icon
     });
-    usuarioMarker.addTo(this.mapa);
-    usuarioMarker.bindPopup("<b>Tú</b>").openPopup();
-    this.mapa.setView([21.913357686792555, -102.31741885752632], 16);
+    this.usuarioMarker.addTo(this.mapa);
+    this.usuarioMarker.bindPopup("<b>Tú</b>").openPopup();
   }
 
   setVendedores(){
-    let markers:L.Marker[] = []
+    if(this.vendedoresMarker.length != 0){
+      for (let i = 0; i < this.vendedoresMarker.length; i++) {
+        const element = this.vendedoresMarker[i];
+        element.remove()
+      }
+    }
     this.vendedores.forEach((vendedor) => {
-      if(vendedor.activo && vendedor.ubicacion.latitud != 1000 && vendedor.ubicacion.longitud != 1000){
-        let marker = L.marker([vendedor.ubicacion.latitud, vendedor.ubicacion.longitud], {
+      if(vendedor.activo){
+        let marker = L.marker([vendedor.ubicacion.longitud, vendedor.ubicacion.latitud], {
           icon: this.icon
         })
         let popUp = marker.bindPopup(vendedor.nombreComercial);
@@ -102,6 +109,7 @@ export class MapaComponent implements OnInit, OnDestroy{
           this.router.navigateByUrl('/vendedor/'+vendedor.id);
         })
         marker.addTo(this.mapa);
+        this.vendedoresMarker.push(marker)
       }
     })
   }

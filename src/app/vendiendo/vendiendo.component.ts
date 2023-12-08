@@ -33,8 +33,8 @@ export class VendiendoComponent implements OnInit, OnDestroy{
         primape: this.usuario.primape,
         segape: this.usuario.segape,
         ubicacion:JSON.stringify({
-          longitud: this.ubicacion.longitude,
-          latitud: this.ubicacion.latitude
+          longitud: this.ubicacion.latitude,
+          latitud: this.ubicacion.longitude
         }),
         activo: false
       }
@@ -90,11 +90,11 @@ export class VendiendoComponent implements OnInit, OnDestroy{
           correo: this.usuario.correo,
           contrasena: this.usuario.contrasena,
           nombre: this.usuario.nombre,
-          primape: this.usuario.pirmape,
+          primape: this.usuario.primape,
           segape: this.usuario.segape,
           ubicacion:JSON.stringify({
-            longitud: this.ubicacion.longitude,
-            latitud: this.ubicacion.latitude
+            longitud:  this.ubicacion.latitude,
+            latitud: this.ubicacion.longitude
           }),
           activo: true
         }
@@ -114,15 +114,17 @@ export class VendiendoComponent implements OnInit, OnDestroy{
           correo: this.usuario.correo,
           contrasena: this.usuario.contrasena,
           nombre: this.usuario.nombre,
-          primape: this.usuario.pirmape,
+          primape: this.usuario.primape,
           segape: this.usuario.segape,
+          activo: true,
           ubicacion:JSON.stringify({
             longitud: this.ubicacion.longitude,
             latitud: this.ubicacion.latitude
-          }),
-          activo: true
+          })
         }
+        console.log(body)
         this.backendService.actualizacion('/vendedor', body).then((res:any) => {
+          console.log(res)
           if(res.success){
             Swal.mixin({
               toast: true,

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BackendService {
-  private URL:string = "http://localhost:3000" //Cambiar según sea necesario
+  private URL:string = "http://192.168.237.142" //Cambiar según sea necesario
   constructor(private httpClient:HttpClient) {}
   async consulta(url:string){
     let ruta:string = this.URL + "/consulta" + url;

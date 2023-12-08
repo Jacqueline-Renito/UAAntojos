@@ -74,6 +74,7 @@ export class RegistroProductoComponent implements OnInit{
     this.backService.alta('/producto',body).then((data:any)=>{
         if(data.success){
           Swal.fire('Registrar','Se ha registrado correctamente el producto','success');
+          this.getProductos()
         }
         else{
           Swal.fire('Registrar',data.message,'error');
